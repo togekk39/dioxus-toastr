@@ -2,6 +2,40 @@
 
 This crate provides a Dioxus-based toast notification system inspired by Toastr, enabling Rust/Dioxus apps to show typed, reactive notifications.
 
+## Usage Example
+
+```rust
+use dioxus::prelude::*;
+use dioxus_toastr::{ToastProvider, use_toast};
+
+fn main() {
+    launch(App);
+}
+
+#[component]
+fn App() -> Element {
+    rsx! {
+        ToastProvider {
+            Demo {}
+        }
+    }
+}
+
+#[component]
+fn Demo() -> Element {
+    let toast = use_toast();
+
+    rsx! {
+        button {
+            onclick: move |_| {
+                toast.success("Saved!", "Your changes are now live.");
+            },
+            "Show toast"
+        }
+    }
+}
+```
+
 ## Development Environment
 
 ### Requirements
