@@ -1,6 +1,6 @@
 # Dioxus Toastr
 
-This crate provides a Dioxus-based toast notification system inspired by Toastr, enabling Rust/Dioxus apps to show typed, reactive notifications.
+This crate provides a Dioxus-based toast notification system inspired by [Toastr](https://github.com/CodeSeven/toastr), enabling Rust/Dioxus apps to show typed, reactive notifications.
 
 ## Usage Example
 
