@@ -1,0 +1,8 @@
+[package]
+name = "dioxus_toastr"
+version = "0.1.0"
+edition = "2021"
+
+[dependencies]
+dioxus = "0.5"
+futures-timer = "3"
