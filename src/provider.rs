@@ -13,7 +13,10 @@ pub struct ToastProviderProps {
 pub fn ToastProvider(props: ToastProviderProps) -> Element {
     let options = props.options.clone().unwrap_or_default();
     let store = use_context_provider(|| ToastStore::new(options.clone()));
-    store.update_options(options.clone());
+    let effect_store = store.clone();
+    use_effect(use_reactive!(|options| {
+        effect_store.update_options(options.clone());
+    }));
 
     let toasts = store.toasts();
     let render_items = toasts.read().clone();
