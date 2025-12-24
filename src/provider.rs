@@ -14,9 +14,10 @@ pub fn ToastProvider(props: ToastProviderProps) -> Element {
     let options = props.options.clone().unwrap_or_default();
     let store = use_context_provider(|| ToastStore::new(options.clone()));
     let effect_store = store.clone();
-    use_effect(use_reactive!(|options| {
+    let mut update_effect = use_effect(move || {
         effect_store.update_options(options.clone());
-    }));
+    });
+    update_effect.mark_dirty();
 
     let toasts = store.toasts();
     let render_items = toasts.read().clone();
