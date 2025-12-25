@@ -1,0 +1,12 @@
+services:
+  app:
+    build: .
+    volumes:
+      - .:/app
+    environment:
+      - RUST_LOG=debug
+      # - RUST_LOG=error
+    tty: true
+    ports:
+      - "9998:9998"
+    #command: bash -c "dx serve --addr 0.0.0.0 --example minimal --port 9998 --platform web"

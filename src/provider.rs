@@ -20,8 +20,11 @@ pub fn ToastProvider(props: ToastProviderProps) -> Element {
     let layout_class = if store.options().rtl { "toast-rtl" } else { "" };
     let position_class = store.options().position_class;
     let container_id = store.options().container_id;
+    static APP_CSS: &str = include_str!(concat!(env!("CARGO_MANIFEST_DIR"), "/src/toastr.min.css"));
+
 
     rsx! {
+        document::Style { "{APP_CSS}" }
         div {
             id: "{container_id}",
             class: "{position_class} {layout_class}",
