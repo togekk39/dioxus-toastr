@@ -81,6 +81,8 @@ cargo check
 
 3. Open the printed local URL (typically <http://127.0.0.1:8080>) in your browser.
 
+> Note: run the command from the project root so Trunk can find `index.html`.
+
 ### Using Dioxus CLI
 
 1. Install the CLI (if needed):
