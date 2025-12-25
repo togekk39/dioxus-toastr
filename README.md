@@ -42,6 +42,8 @@ fn Demo() -> Element {
 
 - Rust stable toolchain (recommended via rustup)
 - Cargo
+- [Trunk](https://trunkrs.dev/) (for serving with `trunk serve`)
+- [Dioxus CLI](https://dioxuslabs.com/learn/0.5/getting_started/cli) (for serving with `dx serve`)
 
 ### Setup
 
@@ -60,6 +62,42 @@ Run a compile check:
 ```bash
 cargo check
 ```
+
+## Run the example in a browser
+
+### Using Trunk
+
+1. Install Trunk (if needed):
+
+   ```bash
+   cargo install trunk
+   ```
+
+2. Start the dev server:
+
+   ```bash
+   trunk serve --example minimal
+   ```
+
+3. Open the printed local URL (typically <http://127.0.0.1:8080>) in your browser.
+
+> Note: run the command from the project root so Trunk can find `index.html`.
+
+### Using Dioxus CLI
+
+1. Install the CLI (if needed):
+
+   ```bash
+   cargo install dioxus-cli
+   ```
+
+2. Start the dev server:
+
+   ```bash
+   dx serve --example minimal
+   ```
+
+3. Open the printed local URL in your browser.
 
 ## Development Workflow
 
