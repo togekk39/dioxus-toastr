@@ -1,8 +1,11 @@
 use dioxus::prelude::*;
 use dioxus_toastr::{use_toast, ToastProvider};
+use dioxus::web;
+use dioxus::web::launch::launch_cfg;
 
 fn main() {
-    launch(App);
+    let cfg = web::Config::new().rootname("app-root");
+    launch_cfg(App, cfg);
 }
 
 #[component]
