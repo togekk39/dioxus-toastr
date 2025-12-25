@@ -1,7 +1,12 @@
 use crate::types::{Toast, ToastId, ToastOptions, ToastRequest};
 use dioxus::prelude::*;
-use futures_timer::Delay;
 use std::time::Duration;
+
+#[cfg(target_arch = "wasm32")]
+use gloo_timers::future::TimeoutFuture;
+
+#[cfg(not(target_arch = "wasm32"))]
+use futures_timer::Delay;
 
 #[derive(Clone)]
 pub struct ToastStore {
@@ -87,7 +92,12 @@ impl ToastStore {
         if time_out != Duration::from_millis(0) {
             let mut toasts = self.toasts;
             spawn(async move {
+                #[cfg(target_arch = "wasm32")]
+                TimeoutFuture::new(time_out.as_millis() as u32).await;
+
+                #[cfg(not(target_arch = "wasm32"))]
                 Delay::new(time_out).await;
+
                 let mut items = toasts.write();
                 items.retain(|toast| toast.id != id);
             });

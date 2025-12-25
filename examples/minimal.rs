@@ -24,7 +24,7 @@ fn Demo() -> Element {
     rsx! {
         button {
             onclick: move |_| {
-                toast.success("Saved!", "Your changes are now live.");
+                toast.success("Your changes are now live.");
             },
             "Show toast"
         }
