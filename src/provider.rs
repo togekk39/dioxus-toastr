@@ -13,13 +13,16 @@ pub struct ToastProviderProps {
 pub fn ToastProvider(props: ToastProviderProps) -> Element {
     let options = props.options.clone().unwrap_or_default();
     let store = use_context_provider(|| ToastStore::new(options.clone()));
-    store.update_options(options.clone());
+    let effect_store = store.clone();
+    use_effect(use_reactive!(|options| {
+        effect_store.update_options(options.clone());
+    }));
 
     let toasts = store.toasts();
     let render_items = toasts.read().clone();
-    let layout_class = if store.options().rtl { "toast-rtl" } else { "" };
-    let position_class = store.options().position_class;
-    let container_id = store.options().container_id;
+    let layout_class = if options.rtl { "toast-rtl" } else { "" };
+    let position_class = options.position_class;
+    let container_id = options.container_id;
 
     rsx! {
         div {
