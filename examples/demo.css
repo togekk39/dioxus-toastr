@@ -1,0 +1,134 @@
+body {
+    margin: 0;
+    font-family: "Inter", system-ui, -apple-system, sans-serif;
+    background: #f7f7f8;
+    color: #1c1c1e;
+}
+
+.demo {
+    max-width: 1100px;
+    margin: 40px auto;
+    padding: 0 24px 64px;
+}
+
+.demo h1 {
+    margin-bottom: 8px;
+    font-size: 32px;
+}
+
+.demo p {
+    margin-top: 0;
+    color: #666;
+}
+
+.demo-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    gap: 16px;
+    margin-top: 24px;
+}
+
+.panel {
+    background: #ffffff;
+    border-radius: 12px;
+    padding: 16px;
+    box-shadow: 0 12px 24px rgba(0, 0, 0, 0.08);
+}
+
+.panel h2 {
+    font-size: 16px;
+    margin: 0 0 12px;
+}
+
+.field {
+    display: grid;
+    gap: 6px;
+    margin-bottom: 12px;
+}
+
+.field label {
+    font-size: 13px;
+    color: #444;
+}
+
+.field input[type="text"],
+.field input[type="number"],
+.field textarea {
+    width: 100%;
+    padding: 8px 10px;
+    border-radius: 8px;
+    border: 1px solid #d4d4d8;
+    font-size: 14px;
+    box-sizing: border-box;
+}
+
+.field textarea {
+    min-height: 86px;
+    resize: vertical;
+}
+
+.options {
+    display: grid;
+    gap: 8px;
+    font-size: 14px;
+}
+
+.options label {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.radio-group {
+    display: grid;
+    gap: 6px;
+    font-size: 14px;
+}
+
+.controls {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 12px;
+    margin-top: 16px;
+}
+
+.controls button {
+    border: none;
+    padding: 10px 16px;
+    border-radius: 999px;
+    font-size: 14px;
+    cursor: pointer;
+}
+
+.controls .primary {
+    background: #4f46e5;
+    color: #fff;
+}
+
+.controls .secondary {
+    background: #ef4444;
+    color: #fff;
+}
+
+.controls button:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+}
+
+.options-preview {
+    background: #0f172a;
+    color: #e2e8f0;
+    padding: 16px;
+    border-radius: 12px;
+    font-size: 12px;
+    white-space: pre-wrap;
+    margin-top: 16px;
+}
+
+.links {
+    margin-top: 32px;
+}
+
+.links ul {
+    padding-left: 18px;
+}
