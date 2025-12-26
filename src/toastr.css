@@ -118,6 +118,15 @@ button.toast-close-button {
   opacity: 0.8;
   -ms-filter: progid:DXImageTransform.Microsoft.Alpha(Opacity=80);
   filter: alpha(opacity=80);
+  animation: toast-in 300ms ease-out;
+  animation-fill-mode: both;
+}
+#toast-container.toast-bottom-right > div,
+#toast-container.toast-bottom-left > div,
+#toast-container.toast-bottom-center > div,
+#toast-container.toast-bottom-full-width > div {
+  animation: toast-in-down 300ms ease-out;
+  animation-fill-mode: both;
 }
 #toast-container > div.rtl {
   direction: rtl;
@@ -181,6 +190,46 @@ button.toast-close-button {
   opacity: 0.4;
   -ms-filter: progid:DXImageTransform.Microsoft.Alpha(Opacity=40);
   filter: alpha(opacity=40);
+}
+@keyframes toast-in {
+  from {
+    opacity: 0;
+    transform: translate3d(0, -8px, 0);
+  }
+  to {
+    opacity: 0.8;
+    transform: translate3d(0, 0, 0);
+  }
+}
+@keyframes toast-in-down {
+  from {
+    opacity: 0;
+    transform: translate3d(0, 8px, 0);
+  }
+  to {
+    opacity: 0.8;
+    transform: translate3d(0, 0, 0);
+  }
+}
+@keyframes toast-out {
+  from {
+    opacity: 0.8;
+    transform: translate3d(0, 0, 0);
+  }
+  to {
+    opacity: 0;
+    transform: translate3d(0, -8px, 0);
+  }
+}
+@keyframes toast-out-down {
+  from {
+    opacity: 0.8;
+    transform: translate3d(0, 0, 0);
+  }
+  to {
+    opacity: 0;
+    transform: translate3d(0, 8px, 0);
+  }
 }
 /*Responsive Design*/
 @media all and (max-width: 240px) {
