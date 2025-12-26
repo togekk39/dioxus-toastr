@@ -61,20 +61,20 @@ fn main() {
 
 #[component]
 fn App() -> Element {
-    let title = use_signal(String::new);
-    let message = use_signal(String::new);
-    let toast_kind = use_signal(|| ToastKind::Success);
-    let position = use_signal(|| Position::TopRight);
-    let close_button = use_signal(|| false);
-    let progress_bar = use_signal(|| false);
-    let rtl = use_signal(|| false);
-    let prevent_duplicates = use_signal(|| false);
-    let newest_on_top = use_signal(|| true);
-    let tap_to_dismiss = use_signal(|| true);
-    let time_out = use_signal(|| 5000_u64);
-    let extended_time_out = use_signal(|| 1000_u64);
-    let last_toast_id = use_signal(|| None::<u64>);
-    let message_index = use_signal(|| 0_usize);
+    let mut title = use_signal(String::new);
+    let mut message = use_signal(String::new);
+    let mut toast_kind = use_signal(|| ToastKind::Success);
+    let mut position = use_signal(|| Position::TopRight);
+    let mut close_button = use_signal(|| false);
+    let mut progress_bar = use_signal(|| false);
+    let mut rtl = use_signal(|| false);
+    let mut prevent_duplicates = use_signal(|| false);
+    let mut newest_on_top = use_signal(|| true);
+    let mut tap_to_dismiss = use_signal(|| true);
+    let mut time_out = use_signal(|| 5000_u64);
+    let mut extended_time_out = use_signal(|| 1000_u64);
+    let mut last_toast_id = use_signal(|| None::<u64>);
+    let mut message_index = use_signal(|| 0_usize);
 
     let options = {
         let mut options = ToastOptions::default();
@@ -322,8 +322,11 @@ struct ControlsProps {
 }
 
 #[component]
-fn Controls(props: ControlsProps) -> Element {
+fn Controls(mut props: ControlsProps) -> Element {
     let toast = use_toast();
+    let mut toast_for_show = toast.clone();
+    let mut toast_for_clear = toast.clone();
+    let mut toast_for_remove = toast.clone();
 
     rsx! {
         div { class: "controls",
@@ -348,7 +351,7 @@ fn Controls(props: ControlsProps) -> Element {
                         request = request.with_title(title.to_string());
                     }
 
-                    let id = toast.push(request);
+                    let id = toast_for_show.push(request);
                     if id != 0 {
                         props.last_toast_id.set(Some(id));
                     }
@@ -357,15 +360,18 @@ fn Controls(props: ControlsProps) -> Element {
             }
             button {
                 class: "secondary",
-                onclick: move |_| toast.clear(),
+                onclick: move |_| toast_for_clear.clear(),
                 "Clear Toasts"
             }
             button {
                 class: "secondary",
                 disabled: props.last_toast_id.read().is_none(),
                 onclick: move |_| {
-                    if let Some(id) = *props.last_toast_id.read() {
-                        toast.remove(id);
+                    let last_id = *props.last_toast_id.read();
+                    if let Some(id) = last_id {
+                        toast_for_remove.remove(id);
+                    }
+                    if last_id.is_some() {
                         props.last_toast_id.set(None);
                     }
                 },
