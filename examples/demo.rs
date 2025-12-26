@@ -73,8 +73,8 @@ fn App() -> Element {
     let mut tap_to_dismiss = use_signal(|| true);
     let mut time_out = use_signal(|| 5000_u64);
     let mut extended_time_out = use_signal(|| 1000_u64);
-    let mut last_toast_id = use_signal(|| None::<u64>);
-    let mut message_index = use_signal(|| 0_usize);
+    let last_toast_id = use_signal(|| None::<u64>);
+    let message_index = use_signal(|| 0_usize);
 
     let options = {
         let mut options = ToastOptions::default();
@@ -324,9 +324,9 @@ struct ControlsProps {
 #[component]
 fn Controls(mut props: ControlsProps) -> Element {
     let toast = use_toast();
-    let mut toast_for_show = toast.clone();
-    let mut toast_for_clear = toast.clone();
-    let mut toast_for_remove = toast.clone();
+    let toast_for_show = toast.clone();
+    let toast_for_clear = toast.clone();
+    let toast_for_remove = toast.clone();
 
     rsx! {
         div { class: "controls",
