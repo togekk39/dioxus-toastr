@@ -121,6 +121,13 @@ button.toast-close-button {
   animation: toast-in 300ms ease-out;
   animation-fill-mode: both;
 }
+#toast-container.toast-bottom-right > div,
+#toast-container.toast-bottom-left > div,
+#toast-container.toast-bottom-center > div,
+#toast-container.toast-bottom-full-width > div {
+  animation: toast-in-down 300ms ease-out;
+  animation-fill-mode: both;
+}
 #toast-container > div.rtl {
   direction: rtl;
   padding: 15px 50px 15px 15px;
@@ -194,6 +201,16 @@ button.toast-close-button {
     transform: translate3d(0, 0, 0);
   }
 }
+@keyframes toast-in-down {
+  from {
+    opacity: 0;
+    transform: translate3d(0, 8px, 0);
+  }
+  to {
+    opacity: 0.8;
+    transform: translate3d(0, 0, 0);
+  }
+}
 @keyframes toast-out {
   from {
     opacity: 0.8;
@@ -202,6 +219,16 @@ button.toast-close-button {
   to {
     opacity: 0;
     transform: translate3d(0, -8px, 0);
+  }
+}
+@keyframes toast-out-down {
+  from {
+    opacity: 0.8;
+    transform: translate3d(0, 0, 0);
+  }
+  to {
+    opacity: 0;
+    transform: translate3d(0, 8px, 0);
   }
 }
 /*Responsive Design*/

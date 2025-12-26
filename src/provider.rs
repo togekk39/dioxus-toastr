@@ -52,11 +52,17 @@ fn ToastItem(props: ToastItemProps) -> Element {
     let role = props.toast.kind.aria_role();
     let timeout_ms = props.toast.time_out.as_millis() as u64;
     let fade_duration_ms = 300u64;
+    let is_bottom = options.position_class.contains("toast-bottom");
+    let (toast_in, toast_out) = if is_bottom {
+        ("toast-in-down", "toast-out-down")
+    } else {
+        ("toast-in", "toast-out")
+    };
     let toast_style = if timeout_ms > 0 {
         let fade_out_delay_ms = timeout_ms.saturating_sub(fade_duration_ms);
         format!(
-            "animation: toast-in {fade_duration_ms}ms ease-out, \
-             toast-out {fade_duration_ms}ms ease-in {fade_out_delay_ms}ms forwards;"
+            "animation: {toast_in} {fade_duration_ms}ms ease-out, \
+             {toast_out} {fade_duration_ms}ms ease-in {fade_out_delay_ms}ms forwards;"
         )
     } else {
         String::new()
