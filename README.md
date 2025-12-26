@@ -36,6 +36,22 @@ fn Demo() -> Element {
 }
 ```
 
+## Demo Example
+
+The repository includes a more complete demo that mirrors the original toastr sample page.
+
+Run it with Trunk:
+
+```bash
+trunk serve --example demo
+```
+
+Or with the Dioxus CLI:
+
+```bash
+dx serve --example demo
+```
+
 ## Development Environment
 
 ### Requirements
